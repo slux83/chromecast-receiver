@@ -27,7 +27,7 @@ public class App
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 
             // Register a service
-            ServiceInfo serviceInfo = ServiceInfo.create(" _googlecast._tcp", "googlecast", 8009,
+            ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "googlecast", 8009,
                     "Chromecast Receiver");
             LOG.info("Service Info: " + serviceInfo.getNiceTextString() + " " + serviceInfo.getProtocol() + " "
                     + serviceInfo.getName());
@@ -36,12 +36,13 @@ public class App
             LOG.info("DNS registered");
 
             // Wait a bit
-            Thread.sleep(250000);
+            Thread.sleep(200000);
 
             // Unregister all services
             jmdns.unregisterAllServices();
             LOG.info("DNS service unregistered. Exiting...");
 
+            System.exit(0);
         }
         catch (IOException e)
         {
